@@ -33,3 +33,61 @@ window.addEventListener('scroll', () => {
   craftShoe.style.filter = `drop-shadow(0 ${40 - distance * 13}px ${30 + distance * 10}px rgba(0,0,0,.82)) brightness(${.86 + distance * .25})`;
   pillars.forEach((pillar, index) => pillar.classList.toggle('active', Math.min(2, Math.floor(distance * 3)) === index));
 }, { passive: true });
+
+document.querySelectorAll('[data-card]').forEach((card) => {
+  card.addEventListener('pointermove', (event) => {
+    const rect = card.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width - .5;
+    const y = (event.clientY - rect.top) / rect.height - .5;
+    card.querySelector('.card-media img').style.transform = `rotate(${x * 7 - 8}deg) translate(${x * 12}px, ${y * 8}px) scale(1.25)`;
+  });
+  card.addEventListener('pointerleave', () => card.querySelector('.card-media img').style.transform = '');
+});
+
+const bag = [];
+const cart = document.querySelector('.cart');
+const backdrop = document.querySelector('.cart-backdrop');
+const cartItems = document.querySelector('.cart-items');
+const cartEmpty = document.querySelector('.cart-empty');
+const cartTotal = document.querySelector('.cart-total');
+const bagCount = document.querySelector('.bag-toggle span');
+const checkoutButton = document.querySelector('.checkout-button');
+const money = (value) => `KES ${value.toLocaleString('en-KE')}`;
+
+function renderBag() {
+  const total = bag.reduce((sum, item) => sum + item.price, 0);
+  bagCount.textContent = bag.length;
+  cartTotal.textContent = money(total);
+  cartEmpty.hidden = bag.length > 0;
+  cartItems.innerHTML = bag.map((item) => `<div class="cart-item"><div class="cart-thumb"></div><div><p>${item.name}</p><span>${money(item.price)}</span></div></div>`).join('');
+  checkoutButton.disabled = bag.length === 0;
+}
+function setCart(open) { cart.classList.toggle('open', open); backdrop.classList.toggle('open', open); cart.setAttribute('aria-hidden', String(!open)); }
+document.querySelector('.bag-toggle').addEventListener('click', () => setCart(true));
+document.querySelector('.cart-close').addEventListener('click', () => setCart(false));
+backdrop.addEventListener('click', () => setCart(false));
+document.querySelectorAll('.bag-button').forEach((button) => button.addEventListener('click', () => {
+  bag.push({ name: button.dataset.product, price: Number(button.dataset.price) });
+  renderBag(); setCart(true);
+}));
+document.querySelector('.checkout-button').addEventListener('click', () => {
+  setCart(false);
+  const total = bag.reduce((sum, item) => sum + item.price, 0);
+  document.querySelector('.checkout-summary').textContent = `${bag.length} piece${bag.length > 1 ? 's' : ''} selected — ${money(total)}.`;
+  document.querySelector('.checkout').classList.add('open');
+  document.querySelector('.checkout').setAttribute('aria-hidden', 'false');
+});
+document.querySelector('.checkout-close').addEventListener('click', () => document.querySelector('.checkout').classList.remove('open'));
+document.querySelector('.checkout-form').addEventListener('submit', (event) => {
+  event.preventDefault();
+  const data = new FormData(event.currentTarget);
+  const total = bag.reduce((sum, item) => sum + item.price, 0);
+  const order = `TDC-${Math.floor(100000 + Math.random() * 900000)}`;
+  document.querySelector('.checkout').classList.remove('open');
+  document.querySelector('.receipt-message').textContent = `Thank you, ${data.get('name')}. Your order has been reserved and our concierge will confirm delivery.`;
+  document.querySelector('.receipt-details').innerHTML = `<div><span>Order</span><strong>${order}</strong></div><div><span>Items</span><strong>${bag.length}</strong></div><div><span>Total</span><strong>${money(total)}</strong></div><div><span>Delivery</span><strong>${data.get('address')}</strong></div>`;
+  document.querySelector('.receipt').classList.add('open');
+  document.querySelector('.receipt').setAttribute('aria-hidden', 'false');
+  bag.length = 0; renderBag(); event.currentTarget.reset();
+});
+document.querySelector('.receipt-close').addEventListener('click', () => document.querySelector('.receipt').classList.remove('open'));
