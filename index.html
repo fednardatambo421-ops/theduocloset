@@ -15,7 +15,7 @@
       <nav class="nav" aria-label="Main navigation">
         <a class="brand" href="#top" aria-label="The Duo Closet home"><img src="duo-closet-logo.jpeg" alt="The Duo Closet" /><span class="brand-name">The Duo Closet</span></a>
         <div class="nav-links"><a href="#collection">Collection</a><a href="#story">Our story</a></div>
-        <button class="menu" aria-label="Open menu"><i></i><i></i></button>
+        <button class="menu" type="button" aria-label="Open menu" aria-expanded="false"><i></i><i></i></button>
       </nav>
 
       <div class="aurora aurora-one"></div><div class="aurora aurora-two"></div>
@@ -41,6 +41,11 @@
         <button class="sound" type="button" aria-label="Toggle ambient sound"><span class="sound-bars"><i></i><i></i><i></i></span> Sound on</button>
       </div>
     </main>
+    <aside class="site-menu" aria-hidden="true">
+      <div class="menu-top"><p>The Duo Closet</p><button class="menu-close" type="button" aria-label="Close menu">×</button></div>
+      <nav aria-label="Shop categories"><a href="#shop"><span>01</span> Sneakers <b>↗</b></a><a href="#shop"><span>02</span> Outfits <b>↗</b></a><a href="#shop"><span>03</span> Streetwear <b>↗</b></a><a href="#shop"><span>04</span> Football jerseys <b>↗</b></a><a href="#shop"><span>05</span> Accessories <b>↗</b></a></nav>
+      <div class="menu-bottom"><p>Style is personal.<br />Make it unforgettable.</p><a href="#shop">Shop new arrivals</a></div>
+    </aside>
     <section class="craft" id="collection" aria-labelledby="craft-title">
       <div class="craft-sticky">
         <p class="section-number">02 <span>—</span> The difference is felt</p>
@@ -86,7 +91,7 @@
     </section>
     <section class="shop" id="shop" aria-labelledby="shop-title">
       <div class="shop-intro"><p class="section-number">05 <span>—</span> The marketplace</p><h2 id="shop-title">Find your<br /><em>next icon.</em></h2><p>Curated sneakers and drip, available for delivery across Kenya.</p></div>
-      <div class="shop-toolbar"><span>12 pieces available</span><button type="button" class="filter-button">Filter <b>⌄</b></button></div>
+      <div class="shop-toolbar"><span>12 pieces available</span><button type="button" class="filter-button" aria-expanded="false">Filter <b>⌄</b></button></div><div class="filter-options" hidden><button type="button">All pieces</button><button type="button">Sneakers</button><button type="button">Streetwear</button><button type="button">Jerseys</button></div>
       <div class="shop-grid">
         <article class="shop-product"><div class="shop-image shade-1"><img src="hero-sneaker.png" alt="Midnight gold premium sneaker" /><button class="heart" aria-label="Save Midnight Gold">♡</button></div><p class="product-type">The Duo Signature</p><h3>Midnight Gold</h3><p class="price">KES 24,500</p><button class="bag-button" data-product="Midnight Gold" data-price="24500">Add to bag <b>+</b></button></article>
         <article class="shop-product"><div class="shop-image shade-2"><img src="hero-sneaker.png" alt="Obsidian premium sneaker" /><button class="heart" aria-label="Save Obsidian One">♡</button></div><p class="product-type">Street essential</p><h3>Obsidian One</h3><p class="price">KES 21,800</p><button class="bag-button" data-product="Obsidian One" data-price="21800">Add to bag <b>+</b></button></article>
@@ -102,6 +107,9 @@
     </aside><div class="cart-backdrop"></div>
     <section class="checkout" aria-hidden="true"><div class="checkout-panel"><button class="checkout-close" type="button" aria-label="Close checkout">×</button><p class="eyebrow"><span></span> Secure checkout</p><h2>Almost<br /><em>yours.</em></h2><p class="checkout-summary"></p><form class="checkout-form"><label>Full name<input name="name" required autocomplete="name" placeholder="Your full name" /></label><label>Phone number<input name="phone" required inputmode="tel" placeholder="07XX XXX XXX" /></label><label>Delivery address<input name="address" required autocomplete="street-address" placeholder="Where should we deliver?" /></label><button type="submit">Place order <b>↗</b></button></form><p class="payment-note">M-Pesa and card checkout will be connected before launch.</p></div></section>
     <section class="receipt" aria-hidden="true"><div class="receipt-card"><p class="receipt-mark">THE DUO CLOSET</p><p class="eyebrow"><span></span> Order confirmed</p><h2>It’s on<br /><em>its way.</em></h2><p class="receipt-message"></p><div class="receipt-details"></div><button class="receipt-close" type="button">Continue shopping</button></div></section>
+    <a class="whatsapp-float" href="https://wa.me/254715067628?text=Hello%20The%20Duo%20Closet%2C%20I%20would%20like%20to%20make%20an%20enquiry%20or%20place%20an%20order." target="_blank" rel="noopener" aria-label="Chat with The Duo Closet on WhatsApp"><span>◔</span> WhatsApp</a>
+    <button class="ticket-float" type="button" aria-label="Open support ticket">? <span>Need help?</span></button>
+    <section class="ticket-modal" aria-hidden="true"><div class="ticket-card"><button class="ticket-close" type="button" aria-label="Close support ticket">×</button><p class="eyebrow"><span></span> Concierge support</p><h2>How can we<br /><em>help?</em></h2><p>Send a ticket for sizing, delivery, orders or product enquiries.</p><form class="ticket-form"><label>Your name<input name="ticket-name" required placeholder="Your name" /></label><label>What do you need?<textarea name="ticket-message" required placeholder="Tell us how we can help"></textarea></label><button type="submit">Submit ticket <b>↗</b></button></form><p class="ticket-success" hidden></p></div></section>
     <script src="script.js"></script>
   </body>
 </html>
