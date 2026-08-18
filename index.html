@@ -8,12 +8,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <main class="hero" id="top">
       <nav class="nav" aria-label="Main navigation">
-        <a class="brand" href="#top" aria-label="The Duo Closet home"><span>The</span> Duo Closet</a>
+        <a class="brand" href="#top" aria-label="The Duo Closet home"><img src="duo-closet-logo.jpeg" alt="The Duo Closet" /><span class="brand-name">The Duo Closet</span></a>
         <div class="nav-links"><a href="#collection">Collection</a><a href="#story">Our story</a></div>
         <button class="menu" aria-label="Open menu"><i></i><i></i></button>
       </nav>
@@ -73,6 +73,35 @@
         <p class="editorial-marker">THE DUO CLOSET <span>—</span> THE ICONS</p>
       </div>
     </section>
+    <section class="featured" id="featured" aria-labelledby="featured-title">
+      <div class="featured-heading">
+        <div><p class="section-number">04 <span>—</span> The weekly selection</p><h2 id="featured-title">Featured<br /><em>shoes.</em></h2></div>
+        <a class="text-link" href="#top">View all shoes <b>↗</b></a>
+      </div>
+      <div class="product-grid">
+        <article class="shoe-card" data-card><div class="card-media dusk"><span class="card-tag">New arrival</span><img src="hero-sneaker.png" alt="Midnight gold premium sneaker" /></div><div class="card-info"><div><h3>Midnight Gold</h3><p>Signature collection</p></div><span>KES 24,500</span></div><button class="quick-add">Quick add <b>+</b></button></article>
+        <article class="shoe-card" data-card><div class="card-media stone"><span class="card-tag">Limited</span><img src="hero-sneaker.png" alt="Obsidian luxury sneaker" /></div><div class="card-info"><div><h3>Obsidian One</h3><p>Modern essentials</p></div><span>KES 21,800</span></div><button class="quick-add">Quick add <b>+</b></button></article>
+        <article class="shoe-card" data-card><div class="card-media ember"><span class="card-tag">Exclusive</span><img src="hero-sneaker.png" alt="Onyx gold luxury sneaker" /></div><div class="card-info"><div><h3>Onyx Edition</h3><p>Collector’s release</p></div><span>KES 29,000</span></div><button class="quick-add">Quick add <b>+</b></button></article>
+      </div>
+    </section>
+    <section class="shop" id="shop" aria-labelledby="shop-title">
+      <div class="shop-intro"><p class="section-number">05 <span>—</span> The marketplace</p><h2 id="shop-title">Find your<br /><em>next icon.</em></h2><p>Curated sneakers and drip, available for delivery across Kenya.</p></div>
+      <div class="shop-toolbar"><span>12 pieces available</span><button type="button" class="filter-button">Filter <b>⌄</b></button></div>
+      <div class="shop-grid">
+        <article class="shop-product"><div class="shop-image shade-1"><img src="hero-sneaker.png" alt="Midnight gold premium sneaker" /><button class="heart" aria-label="Save Midnight Gold">♡</button></div><p class="product-type">The Duo Signature</p><h3>Midnight Gold</h3><p class="price">KES 24,500</p><button class="bag-button" data-product="Midnight Gold" data-price="24500">Add to bag <b>+</b></button></article>
+        <article class="shop-product"><div class="shop-image shade-2"><img src="hero-sneaker.png" alt="Obsidian premium sneaker" /><button class="heart" aria-label="Save Obsidian One">♡</button></div><p class="product-type">Street essential</p><h3>Obsidian One</h3><p class="price">KES 21,800</p><button class="bag-button" data-product="Obsidian One" data-price="21800">Add to bag <b>+</b></button></article>
+        <article class="shop-product"><div class="shop-image shade-3"><img src="hero-sneaker.png" alt="Onyx Edition premium sneaker" /><button class="heart" aria-label="Save Onyx Edition">♡</button></div><p class="product-type">Collector's release</p><h3>Onyx Edition</h3><p class="price">KES 29,000</p><button class="bag-button" data-product="Onyx Edition" data-price="29000">Add to bag <b>+</b></button></article>
+      </div>
+    </section>
+    <button class="bag-toggle" type="button" aria-label="Open shopping bag">Bag <span>0</span></button>
+    <aside class="cart" aria-label="Shopping bag" aria-hidden="true">
+      <div class="cart-head"><p>Your bag</p><button class="cart-close" type="button" aria-label="Close bag">×</button></div>
+      <div class="cart-empty">Your edit is waiting.</div>
+      <div class="cart-items"></div>
+      <div class="cart-footer"><div><span>Subtotal</span><strong class="cart-total">KES 0</strong></div><button class="checkout-button" type="button" disabled>Secure checkout <b>↗</b></button></div>
+    </aside><div class="cart-backdrop"></div>
+    <section class="checkout" aria-hidden="true"><div class="checkout-panel"><button class="checkout-close" type="button" aria-label="Close checkout">×</button><p class="eyebrow"><span></span> Secure checkout</p><h2>Almost<br /><em>yours.</em></h2><p class="checkout-summary"></p><form class="checkout-form"><label>Full name<input name="name" required autocomplete="name" placeholder="Your full name" /></label><label>Phone number<input name="phone" required inputmode="tel" placeholder="07XX XXX XXX" /></label><label>Delivery address<input name="address" required autocomplete="street-address" placeholder="Where should we deliver?" /></label><button type="submit">Place order <b>↗</b></button></form><p class="payment-note">M-Pesa and card checkout will be connected before launch.</p></div></section>
+    <section class="receipt" aria-hidden="true"><div class="receipt-card"><p class="receipt-mark">THE DUO CLOSET</p><p class="eyebrow"><span></span> Order confirmed</p><h2>It’s on<br /><em>its way.</em></h2><p class="receipt-message"></p><div class="receipt-details"></div><button class="receipt-close" type="button">Continue shopping</button></div></section>
     <script src="script.js"></script>
   </body>
 </html>
