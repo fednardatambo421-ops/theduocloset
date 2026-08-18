@@ -91,3 +91,26 @@ document.querySelector('.checkout-form').addEventListener('submit', (event) => {
   bag.length = 0; renderBag(); event.currentTarget.reset();
 });
 document.querySelector('.receipt-close').addEventListener('click', () => document.querySelector('.receipt').classList.remove('open'));
+
+document.querySelectorAll('.quick-add').forEach((button, index) => button.addEventListener('click', () => {
+  const choices = [{ name: 'Midnight Gold', price: 24500 }, { name: 'Obsidian One', price: 21800 }, { name: 'Onyx Edition', price: 29000 }];
+  bag.push(choices[index]); renderBag(); setCart(true);
+}));
+document.querySelectorAll('.heart').forEach((button) => button.addEventListener('click', () => { const saved = button.classList.toggle('saved'); button.textContent = saved ? '♥' : '♡'; }));
+const filterButton = document.querySelector('.filter-button');
+const filterOptions = document.querySelector('.filter-options');
+filterButton.addEventListener('click', () => { const open = filterOptions.hidden; filterOptions.hidden = !open; filterButton.setAttribute('aria-expanded', String(open)); });
+document.querySelectorAll('.filter-options button').forEach((button) => button.addEventListener('click', () => { filterButton.firstChild.nodeValue = `${button.textContent} `; filterOptions.hidden = true; filterButton.setAttribute('aria-expanded', 'false'); }));
+
+const menu = document.querySelector('.site-menu');
+const menuButton = document.querySelector('.menu');
+const setMenu = (open) => { menu.classList.toggle('open', open); menu.setAttribute('aria-hidden', String(!open)); menuButton.setAttribute('aria-expanded', String(open)); };
+menuButton.addEventListener('click', () => setMenu(true));
+document.querySelector('.menu-close').addEventListener('click', () => setMenu(false));
+document.querySelectorAll('.site-menu a').forEach((link) => link.addEventListener('click', () => setMenu(false)));
+
+const ticketModal = document.querySelector('.ticket-modal');
+const setTicket = (open) => { ticketModal.classList.toggle('open', open); ticketModal.setAttribute('aria-hidden', String(!open)); };
+document.querySelector('.ticket-float').addEventListener('click', () => setTicket(true));
+document.querySelector('.ticket-close').addEventListener('click', () => setTicket(false));
+document.querySelector('.ticket-form').addEventListener('submit', (event) => { event.preventDefault(); const form = new FormData(event.currentTarget); const name = form.get('ticket-name'); const message = form.get('ticket-message'); const reference = `TDC-${Math.floor(10000 + Math.random() * 90000)}`; document.querySelector('.ticket-success').hidden = false; document.querySelector('.ticket-success').textContent = `Thank you, ${name}. Ticket ${reference} is ready. Use WhatsApp below for an immediate response.`; document.querySelector('.whatsapp-float').href = `https://wa.me/254715067628?text=${encodeURIComponent(`Hello The Duo Closet, I have ticket ${reference}. Name: ${name}. Request: ${message}`)}`; event.currentTarget.reset(); });
